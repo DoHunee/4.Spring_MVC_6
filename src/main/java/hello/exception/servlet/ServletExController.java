@@ -25,6 +25,12 @@ public class ServletExController {
         response.sendError(404, "404 오류!");
     }
 
+    // http://localhost:8080/error-400
+    @GetMapping("/error-400")
+    public void error400(HttpServletResponse response) throws IOException {
+        response.sendError(400, "404 오류!");
+    }
+
     // http://localhost:8080/error-500
     @GetMapping("/error-500")
     public void error500(HttpServletResponse response) throws IOException {
