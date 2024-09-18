@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import hello.exception.exception.BadRequestException;
 import hello.exception.exception.UserException;
 
 @Slf4j
@@ -32,6 +33,14 @@ public class ApiExceptionController {
         }
 
         return new MemberDto(id, "hello " + id);
+    }
+
+
+    // http://localhost:8080/api/response-status-ex1?message=
+    // Postman으로 검증! => header에 accept 타입을 application/json으로 설정해야 한다
+    @GetMapping("/api/response-status-ex1")
+    public String responseStatusEx1() { 
+        throw new BadRequestException(); //여기 설정 때문에 "message": "잘못된 요청 오류"라고 떠야한다
     }
 
     @Data
