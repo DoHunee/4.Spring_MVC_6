@@ -15,7 +15,8 @@ public class MyHandlerExceptionResolver implements HandlerExceptionResolver {
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         try {
             if (ex instanceof IllegalArgumentException) {
-                log.info("IllegalArgumentException resolver to 400");
+                log.info("IllegalArgumentException resolver to 400, message: {}", ex.getMessage());
+                log.error("Exception stack trace:", ex);
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, ex.getMessage());
                 return new ModelAndView();
             }
