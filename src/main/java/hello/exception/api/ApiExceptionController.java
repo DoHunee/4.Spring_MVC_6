@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import hello.exception.exception.UserException;
+
 @Slf4j
 @RestController
 public class ApiExceptionController {
@@ -20,10 +22,13 @@ public class ApiExceptionController {
         if (id.equals("ex")) {
             throw new RuntimeException("잘못된 사용자");
         }
-        
         // id의 값으로 bad가 들어갈 수 없게 설정
         if (id.equals("bad")) {
             throw new IllegalArgumentException("잘못된 입력 값");
+        }
+        // http://localhost:8080/api/members/user-ex
+        if (id.equals("user-ex")) {
+            throw new UserException("사용자 오류");
         }
 
         return new MemberDto(id, "hello " + id);

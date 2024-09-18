@@ -11,6 +11,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import hello.exception.filter.LogFilter;
 import hello.exception.interceptor.LogInterceptor;
 import hello.exception.resolver.MyHandlerExceptionResolver;
+import hello.exception.resolver.UserHandlerExceptionResolver;
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.Filter;
 
@@ -28,7 +29,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     // @Bean
     public FilterRegistrationBean logFilter() {
-    FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
+        FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
         filterRegistrationBean.setFilter(new LogFilter());
         filterRegistrationBean.setOrder(1);
         filterRegistrationBean.addUrlPatterns("/*");
@@ -38,6 +39,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
-    resolvers.add(new MyHandlerExceptionResolver());
+        resolvers.add(new MyHandlerExceptionResolver());
+        resolvers.add(new UserHandlerExceptionResolver());
     }
+
 }
