@@ -4,9 +4,9 @@ import org.springframework.boot.web.server.ConfigurableWebServerFactory;
 import org.springframework.boot.web.server.ErrorPage;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
+// import org.springframework.stereotype.Component;
 
-@Component // 요걸 주석처리 해야 error안에 스프링부트가 제공하는 오류 메커니즘을 사용할 수 있다!
+// @Component // 요걸 주석처리 해야 error안에 스프링부트가 제공하는 오류 메커니즘을 사용할 수 있다!
 public class WebServerCustomizer implements WebServerFactoryCustomizer<ConfigurableWebServerFactory> {
     @Override
     public void customize(ConfigurableWebServerFactory factory) {
