@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.*;
 public class ApiExceptionV2Controller {
 
     // 상태코드가 BAD_REQUEST(400)으로 응답되게!
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    // @ResponseStatus(HttpStatus.BAD_REQUEST)
 
     // 이 @ExceptionHandler가 있으면 {id}파라미터가 bad 일때 우리가 원하는 모양(ErrorResult)으로 응답된다!
-    @ExceptionHandler(IllegalArgumentException.class)
+    // @ExceptionHandler(IllegalArgumentException.class)
     public ErrorResult illegalExHandle(IllegalArgumentException e) {
         log.error("[exceptionHandle] ex", e);
         return new ErrorResult("BAD", e.getMessage());
     }
 
     // 이 @ExceptionHandler가 있으면 {id}파라미터가 user-ex 일때 우리가 원하는 모양(ErrorResult)으로 응답된다!
-    @ExceptionHandler
+    // @ExceptionHandler
     public ResponseEntity<ErrorResult> userExHandle(UserException e) {
         log.error("[exceptionHandle] ex", e);
         ErrorResult errorResult = new ErrorResult("USER-EX", e.getMessage());
@@ -31,8 +31,8 @@ public class ApiExceptionV2Controller {
     }
 
     // 처리되지 않은 모든 예외를 처리하여 내부 서버 오류로 응답
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // HTTP 상태 코드를 500으로 설정
-    @ExceptionHandler
+    // @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // HTTP 상태 코드를 500으로 설정
+    // @ExceptionHandler
     public ErrorResult exHandle(Exception e) {
         log.error("[exceptionHandle] ex", e);
         return new ErrorResult("EX", "내부 오류");
